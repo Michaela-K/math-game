@@ -31,7 +31,10 @@ class Game
     end
 
     @current_player.score += @score.to_i
-    puts "P1: #{@player1.score}/3 VS P2: #{@player2.score}/3 "
+    puts "P1: score -> #{@player1.score}/3  lives: #{@player1.lives}/3"
+    puts "VS"
+    puts "P2: score -> #{@player2.score}/3  lives: #{@player2.lives}/3"
+    puts "******************************"
 
     round(@current_player)
   end
