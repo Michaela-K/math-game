@@ -11,18 +11,26 @@ class Game
 
   def play
     # puts "#{@current_player.inspect}"
-
     puts "------ NEW TURN: #{@current_player.name} -----"
 
+    get_numbers
+    
+    show_scoreboard
 
-    num1 = rand(1..3)
+    round(@current_player)
+  end
+
+  def get_numbers
+    num1 = rand(1..11)
     num2 = rand(1..3)
 
     puts "What does #{num1} plus #{num2} equal?"
     @current_player.answer = gets.chomp.to_i
-    answer = num1 + num2
+    @answer = num1 + num2
+  end
 
-    if @current_player.answer == answer
+  def show_scoreboard
+    if @current_player.answer == @answer
       @current_player.score += 1;
       puts "YES! You are correct!"
     else
@@ -35,8 +43,6 @@ class Game
     puts "VS"
     puts "P2: score -> #{@player2.score}/3  lives: #{@player2.lives}/3"
     puts "******************************"
-
-    round(@current_player)
   end
 
   def round(current_player)
