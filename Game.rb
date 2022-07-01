@@ -10,18 +10,17 @@ class Game
   end
 
   def play
-    # puts "#{@current_player.inspect}"
     puts "------ NEW TURN: #{@current_player.name} -----"
 
     get_numbers
     
-    show_scoreboard
+    show_results
 
-    round(@current_player)
+    next_round(@current_player)
   end
 
   def get_numbers
-    num1 = rand(1..11)
+    num1 = rand(1..3)
     num2 = rand(1..3)
 
     puts "What does #{num1} plus #{num2} equal?"
@@ -29,7 +28,7 @@ class Game
     @answer = num1 + num2
   end
 
-  def show_scoreboard
+  def show_results
     if @current_player.answer == @answer
       @current_player.score += 1;
       puts "YES! You are correct!"
@@ -45,10 +44,10 @@ class Game
     puts "******************************"
   end
 
-  def round(current_player)
+  def next_round(current_player)
     if @current_player.lives === 0 || @current_player.score === 3
-      puts "------ THATS ALL FOLKS -----"
-      puts "#{@current_player.name} WON!!"
+      puts "------ #{@current_player.name} Is tHe WiNnEr !!!-----"
+      puts "***********************************"
     else
       switch_player(@current_player)
       play
@@ -65,3 +64,5 @@ class Game
   # end
 
 end
+
+# irb -r ./main.rb
